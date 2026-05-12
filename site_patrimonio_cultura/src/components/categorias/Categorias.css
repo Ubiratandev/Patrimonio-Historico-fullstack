@@ -1,0 +1,54 @@
+.main_container_categorias{
+
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(141, 141, 141,0.5);
+    text-align: center;
+    margin: auto;
+    color: rgb(255, 255, 255);
+    padding: 20px;
+    margin: 20px;
+    font-size: 8pt;
+}
+.pesquisa{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    padding-bottom: 40px;
+}
+.pesquisa button{
+    border-color: black;
+border-style: solid;}
+.input_search{
+    width: 500px;
+    height: 40px;
+    border-radius: 1%;
+    
+}
+
+.carrossel_categ{
+    margin: auto;
+    padding: auto;
+}
+
+
+
+@media screen and (max-width:360px) {
+
+.main_container_categorias{
+    
+
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+
+    color: white;
+    
+}
+.carrossel_categ{
+    margin: auto;
+}
+}

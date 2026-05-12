@@ -1,0 +1,56 @@
+.cookiesBanner {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  width: 90%;
+  max-width: 600px;
+
+  background: #222;
+  color: #fff;
+  padding: 16px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+
+  z-index: 9999;
+}
+
+.cookiesButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.cookiesButtons button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+
+@media (max-width: 600px) {
+  .cookiesBanner {
+    flex-wrap: wrap; /* 🔥 chave aqui */
+    text-align: center;
+    gap: 12px;
+  }
+
+  .cookiesBanner p {
+    width: 100%; /* texto ocupa linha inteira */
+  }
+
+  .cookiesButtons {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cookiesButtons button {
+    flex: 1; /* botões crescem proporcionalmente */
+  }
+}

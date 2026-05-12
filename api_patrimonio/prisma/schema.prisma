@@ -1,0 +1,100 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model authors {
+  id           BigInt         @id @default(autoincrement())
+  created_at   DateTime       @default(now()) @db.Timestamptz(6)
+  name         String
+  about        String
+  admin        admin[]
+  item_authors item_authors[]
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model categories {
+  id             BigInt           @id @default(autoincrement())
+  created_at     DateTime         @default(now()) @db.Timestamptz(6)
+  category_name  String?
+  category_items category_items[]
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model item_authors {
+  id         BigInt   @id @default(autoincrement())
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  item_id    BigInt
+  author_id  BigInt
+  authors    authors  @relation(fields: [author_id], references: [id])
+  items      items    @relation(fields: [item_id], references: [id])
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model items {
+  id                 BigInt           @id @default(autoincrement())
+  created_at         DateTime         @default(now()) @db.Timestamptz(6)
+  title              String
+  text               String
+  reference          String
+  slug               String
+  open_to_visitation Boolean
+  heritage_status    Boolean
+  category_items     category_items[]
+  item_authors       item_authors[]
+  item_images        item_images[]
+  staging_table      staging_table[]
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model admin {
+  id                                              BigInt          @id @default(autoincrement())
+  created_at                                      DateTime        @default(now()) @db.Timestamptz(6)
+  email                                           String?         @unique
+  password                                        String?
+  role                                            String?
+  author_id                                       BigInt?
+  authors                                         authors?        @relation(fields: [author_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  staging_table_staging_table_requester_idToadmin staging_table[] @relation("staging_table_requester_idToadmin")
+  staging_table_staging_table_reviwer_idToadmin   staging_table[] @relation("staging_table_reviwer_idToadmin")
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model category_items {
+  id          BigInt     @id @default(autoincrement())
+  created_at  DateTime   @default(now()) @db.Timestamptz(6)
+  category_id BigInt
+  item_id     BigInt
+  categories  categories @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  items       items      @relation(fields: [item_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model item_images {
+  id         BigInt   @id @default(autoincrement())
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  item_id    BigInt
+  url        String
+  items      items    @relation(fields: [item_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model staging_table {
+  id                                      BigInt   @id @default(autoincrement())
+  created_at                              DateTime @default(now()) @db.Timestamptz(6)
+  requester_id                            BigInt
+  target_id                               BigInt
+  new_data                                Json
+  status                                  String
+  reviwer_id                              BigInt
+  reviwed_at                              DateTime @default(now()) @db.Timestamptz(6)
+  rejection_reason                        String
+  admin_staging_table_requester_idToadmin admin    @relation("staging_table_requester_idToadmin", fields: [requester_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  admin_staging_table_reviwer_idToadmin   admin    @relation("staging_table_reviwer_idToadmin", fields: [reviwer_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  items                                   items    @relation(fields: [target_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}

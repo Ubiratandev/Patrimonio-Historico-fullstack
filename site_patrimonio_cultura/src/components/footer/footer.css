@@ -1,0 +1,28 @@
+.footer{
+ width: 100vw;
+  background-color: rgb(36, 255, 255);
+  height: 20vh;
+  padding: 1rem;
+  margin-left: calc(-50vw + 50%);
+  display: flex;                     /* necessário para usar align/justify */
+  flex-direction: column;           /* alinha no eixo vertical */
+  align-items: center;              /* centraliza horizontalmente */
+  justify-content: center;          /* centraliza verticalmente */
+  text-align: center;
+}
+
+@media screen and (max-width:412px) {
+  .footer{
+ max-width: 400px;
+  background-color: rgb(255, 255, 255);
+  height: 20vh;
+
+  margin-left: calc(-50vw + 50%);
+  display: flex;                     /* necessário para usar align/justify */
+  flex-direction: column;           /* alinha no eixo vertical */
+  align-items: center;              /* centraliza horizontalmente */
+  justify-content: center;          /* centraliza verticalmente */
+  text-align: center;
+}
+
+}

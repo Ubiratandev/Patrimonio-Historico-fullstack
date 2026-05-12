@@ -1,0 +1,47 @@
+.body {
+    width: 100vw;              /* largura da tela (100% da viewport) */
+    height: 80vh;              /* altura de 80% da viewport */
+    background-color: gray;
+    overflow: auto;            /* adiciona scroll se necessário */
+}
+img{
+    max-width: 50%;           /* imagem nunca ultrapassa a largura do .body */
+    height: auto;              /* mantém proporção */
+    max-height: 50%;          /* nunca ultrapassa a altura do .body */
+    object-fit: contain;       /* ajusta o conteúdo sem cortar */
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 5%;
+}
+.img_journal{
+      float: left;
+    height: auto;
+    margin: 0 15px 15px 0; /* margem direita e inferior para "respiro" do texto */
+}
+/*21971619064*/
+
+@media screen and (max-width:412px){
+    .body {
+    width: 400px;              /* largura da tela (100% da viewport) */
+    height: 80vh;              /* altura de 80% da viewport */
+    background-color: gray;
+    overflow: auto;            /* adiciona scroll se necessário */
+}
+img{
+    max-width: 50%;           /* imagem nunca ultrapassa a largura do .body */
+    height: auto;              /* mantém proporção */
+    max-height: 50%;          /* nunca ultrapassa a altura do .body */
+    object-fit: contain;       /* ajusta o conteúdo sem cortar */
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 5%;
+}
+.img_journal{
+      float: left;
+    height: auto;
+    margin: 0 15px 15px 0; /* margem direita e inferior para "respiro" do texto */
+}
+/*21971619064*/
+}
